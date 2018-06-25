@@ -1,0 +1,12 @@
+.task{
+  padding:1em;
+}
+
+h1{
+  float:left;
+}
+
+input {
+  float:left;
+  margin-right: 1em;
+}
