@@ -7,6 +7,7 @@ const DATABASE_CONNECTION_URL = 'mongodb://localhost/nguitstelgedragdb';
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const bodyParser = require('body-parser');
 
 // express.Router can be re-used for additional routers.
 const taskRouter = require('./api/routers/taskrouter');
@@ -18,6 +19,9 @@ const Tasks = require('./database/schemas/tasks');
 
 const taskMockData = require('./api/mockdata');
 taskMockData.insertMockData();
+
+app.use(bodyParser.json()); // parses application/json data in HTTP requests.
+app.use(bodyParser.urlencoded({ extended: true })); // parses application/x-www-form-urlencoded data in HTTP requests.
 
 // A router is practically a mini-app in itself,
 // so don't forget to wire it up with your app using app.use.

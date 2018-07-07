@@ -3,7 +3,7 @@ const TaskSchema = tasks.schema;
 const TaskModel = tasks.model;
 
 /**
- *
+ * Database repository for all task-related database queries.
  * @constructor
  */
 function TaskRepository() {
@@ -30,8 +30,8 @@ function TaskRepository() {
   /**
    * Deletes the task with the given id.
    */
-  this.deleteTask = function(id) {
-    return TaskModel.delete(id);
+  this.deleteTask = function(id, callback) {
+    TaskModel.deleteOne({_id: id}, callback);
   };
 
   /**
