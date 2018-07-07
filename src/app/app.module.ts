@@ -6,7 +6,7 @@ import { TaskComponent } from './task/task.component';
 import { UserComponent } from './user/user.component';
 import { ServiceComponent } from './service/service.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

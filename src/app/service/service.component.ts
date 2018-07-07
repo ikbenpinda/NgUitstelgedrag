@@ -24,4 +24,15 @@ export class ServiceComponent implements OnInit {
     // get from backend over http - this returns an observable immediately.
     return this.http.get('//localhost:3000/tasks');
   }
+
+  /**
+   *
+   * @param {Task} task
+   * @return {Subscription}
+   */
+  deleteTask(task: Task) {
+    console.warn(`serviceComponent.deleteTask: task = ${JSON.stringify(task, null, 2)}`);
+    console.warn(`serviceComponent.deleteTask: task.id setter = ${task.id}`);
+    return this.http.delete(`//localhost:3000/tasks/${task.id}`);
+  }
 }
