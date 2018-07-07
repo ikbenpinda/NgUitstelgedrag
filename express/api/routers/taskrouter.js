@@ -11,11 +11,12 @@ const taskRepository = new TaskRepository();
  * This enables some reduction in boilerplate, like when dealing with the Same Origin Policy,
  * Parameter next is used to continue routing after this function is executed.
  */
-router.all('/', (request, response, next) => {
+router.all('*', (request, response, next) => {
 
   // Requests from the frontend will be blocked due to the Same Origin Policy.
   // To make sure the requests are approved, we enable Cross-Origin Resource Sharing.
   response.header("Access-Control-Allow-Origin", "*");
+  response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'); // For some reason this needs to be added fo .all().
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -41,9 +42,9 @@ router.get('/', (request, response) => {
  *  Route for deletion of tasks.
  *  Expects an ObjectId in the request body of the item to delete.
  */
-router.delete('/', (request, response) => {
+router.delete('/:task_id', (request, response) => {
 
-  let task_id = request.body['task_id']; // The request.body is not populated until BodyParser is used.
+  let task_id = request.params['task_id']; // The request.body is not populated until BodyParser is used.
 
   taskRepository.deleteTask(task_id, (err, result) => {
 
@@ -55,7 +56,7 @@ router.delete('/', (request, response) => {
       return;
     }
 
-    if (result) {
+    if (result.n > 0) {
       console.log(`Deleted task with id ${task_id}`);
       response.status(200).send(true);
     }
