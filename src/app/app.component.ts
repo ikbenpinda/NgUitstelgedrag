@@ -38,7 +38,7 @@ export class AppComponent {
    * Event handler for completion of a specific task.
    * @param event
    */
-  onTaskCompleted(event) {
+  onTaskCompleted(event: Task) {
 
     console.log(`Updating backend with updated task...`);
 
@@ -60,11 +60,11 @@ export class AppComponent {
    */
   createNewTask() {
     console.log(`Creating new task '${this.model.title}'...`);
-    this.backend.createTask(this.model).subscribe((data: Task) => {
+    this.backend.createTask(this.model).subscribe((data: any) => {
       if (data) {
         console.log(`Response from server: ${JSON.stringify(data, null, 2)}`);
         console.log(`Task '${this.model.title}' was created successfully.`);
-        this.tasks.push(data);
+        this.tasks.push(new Task(data._id, data.title, data.isCompleted));
       }
     });
   }
