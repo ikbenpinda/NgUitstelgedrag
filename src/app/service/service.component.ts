@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {Task} from '../task/task.model';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment.dev';
 
 @Component({
   selector: 'app-service',
@@ -22,7 +23,7 @@ export class ServiceComponent implements OnInit {
    */
   getAllTasks() {
     // get from backend over http - this returns an observable immediately.
-    return this.http.get('//localhost:3000/tasks');
+    return this.http.get(`${environment.api_base_url}/${environment.api_route_tasks}`);
   }
 
   /**
@@ -33,7 +34,7 @@ export class ServiceComponent implements OnInit {
   deleteTask(task: Task) {
     console.warn(`serviceComponent.deleteTask: task = ${JSON.stringify(task, null, 2)}`);
     console.warn(`serviceComponent.deleteTask: task.id setter = ${task.id}`);
-    return this.http.delete(`//localhost:3000/tasks/${task.id}`);
+    return this.http.delete(`${environment.api_base_url}/${environment.api_route_tasks}/${task.id}`);
   }
 
   /**
@@ -42,6 +43,6 @@ export class ServiceComponent implements OnInit {
    */
   createTask(task: Task) {
     console.log(`Adding new task: ${JSON.stringify(task)}`);
-    return this.http.post(`//localhost:3000/tasks`, task);
+    return this.http.post(`${environment.api_base_url}/${environment.api_route_tasks}`, task);
   }
 }

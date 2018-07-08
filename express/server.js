@@ -1,8 +1,13 @@
 //important - rather than using ng serve this needs to be used to actually run your backend.
 
-// FIXME - move to config/external file
-const SERVER_PORT = 3000;
-const DATABASE_CONNECTION_URL = 'mongodb://localhost/nguitstelgedragdb';
+require('dotenv').config({path: './express/environments/.env'});
+
+// For debug-purposes; To print the environment variables, uncomment the below instead:
+// const dotenv = require('dotenv');
+// let result =  dotenv.config({path: './express/environments/.env'}); // Loads the environment variables into Node.process.env.
+// if (result.error)
+//   throw result.error;
+// console.info(`Starting server with the following variables:\n${JSON.stringify(result.parsed, null, 2)}`);
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -29,8 +34,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // parses application/x-www-
 app.use('/tasks', taskRouter);
 
 // Connect to the mongoDB.
-mongoose.connect(DATABASE_CONNECTION_URL);
+mongoose.connect(process.env.DATABASE_CONNECTION_URL);
 
 app.get('/', (req, res) => res.send('You came to the wrong backend, motherfucker.'));
 
-app.listen(SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ SERVER_PORT + '!'));
+app.listen(process.env.SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ process.env.SERVER_PORT + '!'));
