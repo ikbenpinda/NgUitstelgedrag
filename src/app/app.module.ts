@@ -8,6 +8,8 @@ import { ServiceComponent } from './service/service.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,14 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatListModule
   ],
   providers: [
     ServiceComponent // To let the DI know what can be injected..

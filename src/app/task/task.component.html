@@ -1,9 +1,8 @@
 <div class="task">
-
-  <input title="gedaan?" type="checkbox" checked={{task?.isCompleted}}>
-  <h1>
+  <mat-checkbox title="gedaan?" [(ngModel)]="task.isCompleted" (click)="complete()">
     {{task?.title}}
-  </h1>
-  <button (click)="complete()">done</button>
+  </mat-checkbox>
+  <!--Manual override-->
+  <!--<button mat-button color="primary" (click)="complete()">done</button>-->
 
 </div>

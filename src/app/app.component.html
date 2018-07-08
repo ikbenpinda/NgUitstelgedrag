@@ -1,21 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
+  <h1 class="mat-display-1">
     {{ title }}.
   </h1>
 </div>
 <section>
   <h1>New item</h1>
   <form #taskForm="ngForm">
-    <input type="text" title="titel" [(ngModel)]="model.title" name="title" required>
-    <button (click)="createNewTask()">Voeg toe</button>
+    <mat-form-field>
+      <input type="text" title="titel" [(ngModel)]="model.title" name="title" matInput placeholder="titel" required>
+    </mat-form-field>
+    <button mat-button color="accent" (click)="createNewTask()">Voeg toe</button>
   </form>
 </section>
 <section>
-<h2>Tracks to listen to: </h2>
-<ul>
-  <li *ngFor="let task of tasks">
+<h2 class="mat-headline">Tracks to listen to: </h2>
+<mat-list dense>
+  <mat-card *ngFor="let task of tasks">
     <app-task [task]="task" (completed)="onTaskCompleted($event)"></app-task>
-  </li>
-</ul>
+  </mat-card>
+</mat-list>
 </section>
