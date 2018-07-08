@@ -9,6 +9,7 @@ import {ServiceComponent} from './service/service.component';
 })
 export class AppComponent {
   title = 'techno weekly';
+  model: Task = new Task('', '', false);
   tasks: Task[] = [];
 
   constructor(private backend: ServiceComponent) {
@@ -50,6 +51,20 @@ export class AppComponent {
         console.log(`Deletion response: ${JSON.stringify(success, null, 2)}`);
         const position = this.tasks.indexOf(event);
         this.tasks.splice(position, 1);
+      }
+    });
+  }
+
+  /**
+   *
+   */
+  createNewTask() {
+    console.log(`Creating new task '${this.model.title}'...`);
+    this.backend.createTask(this.model).subscribe((data: Task) => {
+      if (data) {
+        console.log(`Response from server: ${JSON.stringify(data, null, 2)}`);
+        console.log(`Task '${this.model.title}' was created successfully.`);
+        this.tasks.push(data);
       }
     });
   }

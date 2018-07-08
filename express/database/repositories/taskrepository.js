@@ -18,13 +18,8 @@ function TaskRepository() {
   /**
    * Upserts tasks.
    */
-  this.saveTask = function(task) {
-    return task.save( (err) => {
-      if (!err)
-        console.log('Task saved successfully!');
-      else
-        console.error(err.message);
-    });
+  this.saveTask = function(task, callback) {
+    task.save(task, callback);
   };
 
   /**

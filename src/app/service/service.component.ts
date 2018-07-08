@@ -35,4 +35,13 @@ export class ServiceComponent implements OnInit {
     console.warn(`serviceComponent.deleteTask: task.id setter = ${task.id}`);
     return this.http.delete(`//localhost:3000/tasks/${task.id}`);
   }
+
+  /**
+   *
+   * @param {Task} task
+   */
+  createTask(task: Task) {
+    console.log(`Adding new task: ${JSON.stringify(task)}`);
+    return this.http.post(`//localhost:3000/tasks`, task);
+  }
 }

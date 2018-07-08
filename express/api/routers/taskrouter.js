@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const TaskRepository = require('../../database/repositories/TaskRepository');
 const taskRepository = new TaskRepository();
+const TaskModel = require('../../database/schemas/tasks').model; // FIXME layering.
 
 // When using Express, make sure not to swap the order of request/response,
 // or all functions will be undefined.
@@ -35,6 +36,35 @@ router.get('/', (request, response) => {
 
     console.log('Found ' + results.length + ' results.');
     response.status(200).send(results);
+  });
+});
+
+/**
+ * Route for creating new tasks.
+ */
+router.post('/', (request, response) => { // fixme - move validation to separate layer.
+
+  let taskData = request.body;
+  console.log(`Received data for new task: ${JSON.stringify(taskData, null, 2)}`);
+
+  if (!taskData._title || taskData._title === '' || taskData._title.length > 255) {
+    response.status(400).send(); // Bad Request
+    return;
+  }
+
+  let newTask = new TaskModel();
+  newTask.title = taskData._title;
+  newTask.isCompleted = false;
+
+  taskRepository.saveTask(newTask, (err, savedTask) => {
+    if (!err) {
+      console.log(`Task saved successfully: ${JSON.stringify(savedTask, null, 2)}`);
+      response.status(201).send(savedTask); // Created
+    }
+    else {
+      console.error(err.message);
+      response.status(500).send(err.message);
+    }
   });
 });
 
