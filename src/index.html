@@ -10,6 +10,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <!--<link href="../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">-->
+  <script type="text/javascript">
+    navigator.serviceWorker && navigator.serviceWorker.register('/pwa/sw.js').then(function(registration) {
+      console.log('Excellent, registered with scope: ', registration.scope);
+    });
+  </script>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
 </head>
 <body class="mat-app-background mat-typography">
   <app-root></app-root>

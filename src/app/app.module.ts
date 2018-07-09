@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatListModule, MatToolbarModule} from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatLi
     MatInputModule,
     MatCheckboxModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     ServiceComponent // To let the DI know what can be injected..
