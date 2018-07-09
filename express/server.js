@@ -8,7 +8,12 @@ require('dotenv').config({path: './express/environments/.env'});
 // if (result.error)
 //   throw result.error;
 // console.info(`Starting server with the following variables:\n${JSON.stringify(result.parsed, null, 2)}`);
-
+const fs = require('fs');
+const https = require('https');
+const options = {
+  key: fs.readFileSync('./ssl/localhost.key'),
+  cert: fs.readFileSync('./ssl/localhost.crt')
+};
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -38,4 +43,7 @@ mongoose.connect(process.env.DATABASE_CONNECTION_URL);
 
 app.get('/', (req, res) => res.send('You came to the wrong backend, motherfucker.'));
 
-app.listen(process.env.SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ process.env.SERVER_PORT + '!'));
+// app.listen(process.env.SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ process.env.SERVER_PORT + '!'));
+https
+  .createServer(options, app)
+  .listen(process.env.SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ process.env.SERVER_PORT + '!'));
