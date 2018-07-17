@@ -39,6 +39,6 @@ testem.log
 Thumbs.db
 
 # SSL certificates and keys
-/ssl/**.pem
-/ssl/**.crt
-/ssl/**.key
+/ssl/*.pem
+/ssl/*.crt
+/ssl/*.key
