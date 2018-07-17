@@ -11,8 +11,9 @@ require('dotenv').config({path: './express/environments/.env'});
 const fs = require('fs');
 const https = require('https');
 const options = {
-  key: fs.readFileSync('./ssl/localhost.key'),
-  cert: fs.readFileSync('./ssl/localhost.crt')
+  key: fs.readFileSync(process.env.SSL_KEY_PATH),
+  cert: fs.readFileSync(process.env.SSL_CERTIFICATE_PATH),
+  passphrase: process.env.SSL_PASSPHRASE
 };
 const express = require('express');
 const mongoose = require('mongoose');
@@ -41,7 +42,9 @@ app.use('/tasks', taskRouter);
 // Connect to the mongoDB.
 mongoose.connect(process.env.DATABASE_CONNECTION_URL);
 
-app.get('/', (req, res) => res.send('You came to the wrong backend, motherfucker.'));
+app.get('/', (req, res) => { // Shows the Express home page. In this case there isn't any.
+  res.status(418).sendFile('./nope.jpg',{root: './express'});
+});
 
 // app.listen(process.env.SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ process.env.SERVER_PORT + '!'));
 https

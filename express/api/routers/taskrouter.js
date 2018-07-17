@@ -16,8 +16,7 @@ router.all('*', (request, response, next) => {
 
   // Requests from the frontend will be blocked due to the Same Origin Policy.
   // To make sure the requests are approved, we enable Cross-Origin Resource Sharing.
-  //response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Origin", "https://localhost:4200");
+  response.header("Access-Control-Allow-Origin", "*");
   response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'); // For some reason this needs to be added fo .all().
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
