@@ -3,6 +3,6 @@
 
 export const environment = {
   production: true,
-  api_base_url: `https://localhost:3000`,
+  api_base_url: `https://backend:3000`,
   api_route_tasks: 'tasks',
 };

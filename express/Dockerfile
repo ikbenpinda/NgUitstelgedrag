@@ -2,7 +2,7 @@
 FROM node:9.11.2
 
 LABEL maintainer="ikbenpinda"
-LABEL description="NgUitstelgedrag. Angular frontend."
+LABEL description="NgUitstelgedrag. Express backend."
 
 # Set a directory within the image for the application code.
 WORKDIR /usr/src/app
@@ -22,7 +22,7 @@ COPY . .
 
 # Make the default port of 3000 available for port forwarding(docker -p <port>:<port>).
 # EXPOSE is mostly for incoming connections, so no worries about the mongoDB or Angular ports.
-EXPOSE 4200
+EXPOSE 3000
 
 # The shell command that start the Express server.
 # npm start executes the alias for starting the backend.

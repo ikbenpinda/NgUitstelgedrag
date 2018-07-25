@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl true --ssl-cert \"./ssl/kutcertificaat.pem\" --ssl-key \"./ssl/kutsleutel.pem\"",
+    "start": "ng serve --ssl true --ssl-cert \"./ssl/kutcertificaat.pem\" --ssl-key \"./ssl/kutsleutel.pem\" --host 0.0.0.0",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
