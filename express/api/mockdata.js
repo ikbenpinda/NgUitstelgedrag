@@ -1,5 +1,5 @@
 const TaskModel = require('../database/schemas/tasks').model;
-const TaskRepository = require('../database/repositories/TaskRepository');
+const TaskRepository = require('../database/repositories/taskrepository');
 
 module.exports = {
 

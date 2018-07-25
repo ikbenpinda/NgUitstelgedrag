@@ -1,6 +1,6 @@
 //important - rather than using ng serve this needs to be used to actually run your backend.
 
-require('dotenv').config({path: './express/environments/.env'});
+require('dotenv').config({path: './environments/.env'});
 
 // For debug-purposes; To print the environment variables, uncomment the below instead:
 // const dotenv = require('dotenv');
@@ -43,7 +43,7 @@ app.use('/tasks', taskRouter);
 mongoose.connect(process.env.DATABASE_CONNECTION_URL);
 
 app.get('/', (req, res) => { // Shows the Express home page. In this case there isn't any.
-  res.status(418).sendFile('./nope.jpg',{root: './express'});
+  res.status(418).sendFile('nope.jpg',{root: './assets'});
 });
 
 // app.listen(process.env.SERVER_PORT, () => console.log('NgUitstelgedrag listening on port '+ process.env.SERVER_PORT + '!'));

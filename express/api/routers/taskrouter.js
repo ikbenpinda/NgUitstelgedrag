@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const TaskRepository = require('../../database/repositories/TaskRepository');
+const TaskRepository = require('../../database/repositories/taskrepository');
 const taskRepository = new TaskRepository();
 const TaskModel = require('../../database/schemas/tasks').model; // FIXME layering.
 
