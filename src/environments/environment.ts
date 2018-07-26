@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_base_url: `//backend:3000`,
+  api_base_url: `//192.168.99.100:3000`,
   api_route_tasks: 'tasks',
 };
 
