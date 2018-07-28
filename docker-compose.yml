@@ -3,13 +3,13 @@
 version: '3'
 services:
   frontend: #name of your service
-    build: . # specify the directory of the Dockerfile
+    build: ./angular # specify the directory of the Dockerfile
     ports:
       - "4200:4200" #specify ports forwarding
     links:
       - backend # link this service to the database service
     volumes: # Map this folder to /usr/src/app in the container(as defined by WORKDIR)
-      - .:/usr/src/app
+      - ./angular:/usr/src/app
     depends_on:
       - backend
   backend:

@@ -41,12 +41,22 @@ To get started, run:
 git clone https://github.com/ikbenpinda/NgUitstelgedrag.git
 cd NgUitstelgedrag/uitstelgedrag
 git checkout pwa
+mongod # optional, just make sure mongo is running.
 npm install
 nodemon ./express/server.js
 npm start
-
 ```
 (npm start instead of ng serve --open is needed to load the ssl certificates.)
+
+To test the service worker, run:  
+```
+ng build --prod
+cd ./dist/uitstelgedrag
+http-server --ssl --cert './ssl/localhost.crt' --key './ssl/localhost.key'
+
+```
+(Despite what the docs say, you need to move to your package within the 'dist' folder otherwise the paths will 404.)
+
 
 ### Enabling HTTPS for the PWA(Progressive Web App)
 
@@ -60,7 +70,7 @@ So to make sure everything works:
 Add an exception for this.  
 3. navigate to **https**\://localhost:3000 (Express). Doing the same thing here will make sure the front-end can connect with the backend (since HTTPS<>HTTP traffic can cause some issues).  
 
-The backend will be available on localhost:3000, the frontend on localhost:4200, now both using HTTPS.
+The backend will be available on localhost:3000, the frontend on localhost:4200, the service worker on localhost:8080, now both using HTTPS.
 
 ### Installing the PWA on your Android device.
 
@@ -79,7 +89,7 @@ All you need to do now is hit up ```YOUR_IP_ADDRESS:4200``` on your phone's brow
 3. **~~Hacking the mainframe~~ Tethering over usb.**   
 By far the most complicated but useful method, a third way would be to connect your phone over usb, then add port forwarding using Google Chrome.  
 After doing so you can access the server on your phone's browser through ```localhost:4200```.
-This can get kind of messy and technical, so i'll just leave [this](https://codelabs.developers.google.com/codelabs/migrate-to-progressive-web-apps/index.html?index=..%2F..%2Findex#1) here(_See "Viewing the site on mobile"_).  
+This can get kind of messy and technical, so i'll just leave [this](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/) here.  
 If your phone does not get detected properly, you might need to install SDKs and drivers, so if you have never bridged your phone/pc ever before, just pick one of the other options.  
 tip: run ```adb devices``` to start the daemon if your device doesn't get detected properly.
 

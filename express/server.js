@@ -21,14 +21,14 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // express.Router can be re-used for additional routers.
-const taskRouter = require('./api/routers/taskrouter');
+const taskRouter = require('./src/api/routers/taskrouter');
 
 // To keep things simple, the schema for tasks has been put in a seperate file.
 // require() returns an object;
 // This means we can call the TaskSchema function in taskschema.js right away.
-const Tasks = require('./database/schemas/tasks');
+const Tasks = require('./src/database/schemas/tasks');
 
-const taskMockData = require('./api/mockdata');
+const taskMockData = require('./src/api/mockdata');
 taskMockData.insertMockData();
 
 app.use(bodyParser.json()); // parses application/json data in HTTP requests.
